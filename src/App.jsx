@@ -7,6 +7,8 @@ import MoviesPage from "./pages/moviesPage/MoviesPage";
 import "./styles/globalStyles.css";
 import { Provider } from 'react-redux'
 import {store} from "./redux/store";
+import Footer from "./components/layout/Footer";
+
 const App = () => {
   const [mode, setMode] = useState("dark");
 
@@ -43,6 +45,7 @@ const App = () => {
                 <Route path={"/"} exact component={() => <MoviesPage />} />
                 <Route path={"/watch"} exact component={() => <MoviePage />} />
               </Switch>
+              <Footer/>
             </div>
           </div>
         </div>
