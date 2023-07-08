@@ -1,6 +1,8 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
+import SideBanners from "../../components/adverts/SideBanners";
+
 import ItemCard from "../../components/explore/ItemCard";
 import {
   selectQueryAppliedContentTypes,
@@ -66,37 +68,42 @@ const MoviesPage = () => {
     } else return [];
   }, [data, selectedGenres, appliedContentTypes]);
 
+  const renderAfterRenderData = useDeferredValue(data);
+
   return (
-    <div className="flex flex-col w-full self-center min-h-screen ">
-      <div className="flex justify-center w-full ">
-        <div className="flex flex-wrap justify-center gap-2 y9:gap-5 mx-1 md:mx-8 mt-10 pb-[60px] self-center ">
-          {loading ? (
-            <div className="flex justify-center mt-10 ">
-              <div>
-                <LoadingOutlined style={{ fontSize: 48 }} />
+    <div className="flex justify-content">
+      <div className="flex flex-col w-[70%] min-h-screen ">
+        <div className="flex justify-center w-full ">
+          <div className="flex flex-wrap justify-center gap-2 y9:gap-5 mx-1 md:mx-8 mt-10 pb-[60px] self-center ">
+            {loading ? (
+              <div className="flex justify-center mt-10 ">
+                <div>
+                  <LoadingOutlined style={{ fontSize: 48 }} />
+                </div>
+                <p className="text-[26px] self-center mx-6 ">Загрузка . . . </p>
               </div>
-              <p className="text-[26px] self-center mx-6 ">Загрузка . . . </p>
-            </div>
-          ) : movies.length != 0 ? (
-            movies?.map((item, index) => (
-              <ItemCard
-                item={item}
-                key={item.info.rus + item.info.year + index}
-              />
-            ))
-          ) : (
-            <div>
-              <p>Не найдено</p>
-              <br />
-              <p>
-                К сожалению, введенные вами ключевые слова не найдены.
-                Попробуйте проверить снова или выполните поиск по другим
-                ключевым словам.
-              </p>
-            </div>
-          )}
+            ) : movies.length != 0 ? (
+              movies?.map((item, index) => (
+                <ItemCard
+                  item={item}
+                  key={item.info.rus + item.info.year + index}
+                />
+              ))
+            ) : (
+              <div>
+                <p>Не найдено</p>
+                <br />
+                <p>
+                  К сожалению, введенные вами ключевые слова не найдены.
+                  Попробуйте проверить снова или выполните поиск по другим
+                  ключевым словам.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
+      <SideBanners refresh={renderAfterRenderData} />
     </div>
   );
 };

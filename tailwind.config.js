@@ -7,6 +7,7 @@ module.exports = {
         se: "375px",
         y7: "450px",
         y9: "540px",
+        md: "768px",
       },
       colors: {
         //MOVIE APP

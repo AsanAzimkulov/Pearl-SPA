@@ -2,8 +2,15 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { RxDotFilled } from "react-icons/rx";
 import { withRouter } from "react-router-dom";
+import horizontalBannerMobileFirst from "../../assets/LEADS/turbozaim/20230531 ban-sum-1080x607.jpg";
+import horizontalBannerPcFirst from "../../assets/LEADS/turbozaim/20230531 ban-sum-1312x160.jpg";
+
+import horizontalBannerMobileSecond from "../../assets/LEADS/webbankir/20230627 marked LjN8KBpPh v3 1080x607 1ed8b3b523fe29fca2bf14eb502d7814.png";
+import horizontalBannerPcSecond from "../../assets/LEADS/webbankir/20230627 marked LjN8KDqHH v2 1312x160 9ecacbb71623611991e533f8b89b8d64.png";
+
 import { moviesContentTypes } from "../../data/movieData";
 import { useQuery } from "../../hooks/useQuery";
+import advertisementService from "../../services/services/AdvertisementService";
 import appConfigService from "../../services/services/AppConfigService";
 import MovieService from "../../services/services/MovieService";
 import { formatList } from "../../utils/formatList";
@@ -217,6 +224,17 @@ const MoviePage = (props) => {
                 </div>
               </div>
             </div>
+            <div className="w-full flex justify-center realtive mt-[20px]">
+              {window.innerWidth > 767 ? (
+                <a href={advertisementService.trackerLinks.turbozaim}>
+                  <img src={horizontalBannerPcFirst} />
+                </a>
+              ) : (
+                <a href={advertisementService.trackerLinks.turbozaim}>
+                  <img src={horizontalBannerMobileFirst} />
+                </a>
+              )}
+            </div>
             <div className="w-full realtive mt-[60px]">
               <iframe
                 title={item.info.rus}
@@ -235,6 +253,18 @@ const MoviePage = (props) => {
                 width="100%"
                 height="600"
               ></iframe>
+            </div>
+
+            <div className="w-full flex justify-center realtive mt-[20px]">
+              {window.innerWidth > 767 ? (
+                <a href={advertisementService.trackerLinks.webbankir}>
+                  <img src={horizontalBannerPcSecond} />
+                </a>
+              ) : (
+                <a href={advertisementService.trackerLinks.webbankir}>
+                  <img src={horizontalBannerMobileSecond} />
+                </a>
+              )}
             </div>
           </div>
         )}
