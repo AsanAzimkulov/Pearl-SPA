@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux/es/exports";
 import SideBanners from "../../components/adverts/SideBanners";
 
 import ItemCard from "../../components/explore/ItemCard";
+import Footer from "../../components/layout/Footer";
 import {
   selectQueryAppliedContentTypes,
   selectQuerySearchText,
@@ -71,6 +72,7 @@ const MoviesPage = () => {
   const renderAfterRenderData = useDeferredValue(data);
 
   return (
+    <>
     <div className="flex justify-content">
       <div className="flex flex-col w-[70%] min-h-screen ">
         <div className="flex justify-center w-full ">
@@ -105,6 +107,8 @@ const MoviesPage = () => {
       </div>
       <SideBanners refresh={renderAfterRenderData} />
     </div>
+    <Footer/>
+    </>
   );
 };
 

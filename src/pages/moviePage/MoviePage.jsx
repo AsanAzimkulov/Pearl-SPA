@@ -4,9 +4,9 @@ import { RxDotFilled } from "react-icons/rx";
 import { withRouter } from "react-router-dom";
 import horizontalBannerMobileFirst from "../../assets/LEADS/turbozaim/20230531 ban-sum-1080x607.jpg";
 import horizontalBannerPcFirst from "../../assets/LEADS/turbozaim/20230531 ban-sum-1312x160.jpg";
-
 import horizontalBannerMobileSecond from "../../assets/LEADS/webbankir/20230627 marked LjN8KBpPh v3 1080x607 1ed8b3b523fe29fca2bf14eb502d7814.png";
 import horizontalBannerPcSecond from "../../assets/LEADS/webbankir/20230627 marked LjN8KDqHH v2 1312x160 9ecacbb71623611991e533f8b89b8d64.png";
+import Footer from "../../components/layout/Footer";
 
 import { moviesContentTypes } from "../../data/movieData";
 import { useQuery } from "../../hooks/useQuery";
@@ -21,8 +21,8 @@ const MoviePage = (props) => {
     props.location.state && props.location.state.item
   );
 
-  if(item) window.tools = {kp: item["kinopoisk_id"]};
-  
+  if (item) window.tools = { kp: item["kinopoisk_id"] };
+
   const [error, setError] = useState(null);
 
   const query = useQuery();
@@ -269,6 +269,7 @@ const MoviePage = (props) => {
                 </a>
               )}
             </div>
+            <Footer />
           </div>
         )}
 

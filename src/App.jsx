@@ -45,7 +45,7 @@ const App = () => {
                 <Route path={"/"} exact component={() => <MoviesPage />} />
                 <Route path={"/watch"} exact component={() => <MoviePage />} />
               </Switch>
-              <Footer/>
+              
             </div>
           </div>
         </div>
