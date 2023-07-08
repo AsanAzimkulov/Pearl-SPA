@@ -3,7 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import ItemCard from "../../components/explore/ItemCard";
 import {
+  selectQueryAppliedContentTypes,
   selectQuerySearchText,
+  selectQuerySelectedGenres,
   setSearchText,
 } from "../../redux/services/query";
 import appConfigService from "../../services/services/AppConfigService";
@@ -16,8 +18,9 @@ const MoviesPage = () => {
   const searchText = useSelector(selectQuerySearchText);
   const dispatch = useDispatch();
 
-  const [appliedContentTypes, setAppliedContentTypes] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const appliedContentTypes = useSelector(selectQueryAppliedContentTypes);
+  const selectedGenres = useSelector(selectQuerySelectedGenres);
+
   const [data, setData] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -26,7 +29,7 @@ const MoviesPage = () => {
     if (!searchText && !appConfigService.config) {
       (async function () {
         await appConfigService.fetchData();
-        console.log(appConfigService.config);
+
         if (!searchText)
           dispatch(setSearchText(appConfigService.config.actualSearchTheme));
       })();
@@ -37,11 +40,10 @@ const MoviesPage = () => {
 
   const debouncedFetchData = debounce(async () => {
     if (searchText.length == 0) return;
-    console.log(searchText);
+
     const data = await MovieService.fetchFilms(searchText);
     setData(data && data.length ? data : []);
     setLoading(false);
-    // console.log(data);
   }, 300);
 
   useEffect(debouncedFetchData, [searchText]);
@@ -65,9 +67,9 @@ const MoviesPage = () => {
   }, [data, selectedGenres, appliedContentTypes]);
 
   return (
-    <div className="flex flex-col w-full self-center min-h-screen">
-      <div className="flex justify-center w-full">
-        <div className="flex flex-wrap justify-center gap-2 y9:gap-5 mx-1 md:mx-8 mt-10 self-center ">
+    <div className="flex flex-col w-full self-center min-h-screen ">
+      <div className="flex justify-center w-full ">
+        <div className="flex flex-wrap justify-center gap-2 y9:gap-5 mx-1 md:mx-8 mt-10 pb-[60px] self-center ">
           {loading ? (
             <div className="flex justify-center mt-10 ">
               <div>
@@ -76,7 +78,12 @@ const MoviesPage = () => {
               <p className="text-[26px] self-center mx-6 ">Загрузка . . . </p>
             </div>
           ) : movies.length != 0 ? (
-            movies?.map((item, index) => <ItemCard item={item} key={index} />)
+            movies?.map((item, index) => (
+              <ItemCard
+                item={item}
+                key={item.info.rus + item.info.year + index}
+              />
+            ))
           ) : (
             <div>
               <p>Не найдено</p>

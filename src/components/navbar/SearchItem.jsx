@@ -6,7 +6,7 @@ import { useGetMovieDetailsQuery } from "../../redux/services/movieDatabase";
 const SearchItem = ({result ,search , setSearch }) => {
     const itemId = result?.id?.match(/\d+/g)[0]
     const {data , fetching , error} = useGetMovieDetailsQuery({movieId:itemId})
-    console.log(data?.ratings.rating)
+
     useEffect(()=>{
       
       if(data?.title.title) return setSearch(true)

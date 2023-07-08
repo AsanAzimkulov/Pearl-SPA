@@ -16,6 +16,6 @@ class AppConfigService {
 
 const appConfigService = new AppConfigService();
 
-appConfigService.fetchData();
+appConfigService.initPromise = appConfigService.fetchData();
 
 export default appConfigService;

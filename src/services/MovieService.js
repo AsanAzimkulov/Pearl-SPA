@@ -22,7 +22,7 @@ class MovieService {
 
   async fetchFilmByKp(kp) {
     let response;
-    console.log(this.resourceUrl + "?token=" + this.token + "&kp=" + kp);
+
     try {
       response = await axios.get(
         this.resourceUrl + "?token=" + this.token + "&kp=" + kp

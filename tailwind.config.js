@@ -2,14 +2,13 @@
 module.exports = {
   darkMode: "class",
   theme: {
-    extend: {  screens:{
-      "se":'375px',
-      'y7':"450",
-      "y9":"540px"
-      
-            },
+    extend: {
+      screens: {
+        se: "375px",
+        y7: "450px",
+        y9: "540px",
+      },
       colors: {
-     
         //MOVIE APP
         screenDark: "#0f0f0f",
         sideBarDark: "#161616",
@@ -23,7 +22,7 @@ module.exports = {
         prameryColorLight: "#ffffff",
         textLight: "#121212",
         textPlight: "#a7a7ad",
-        border:"#2f2f3c",
+        border: "#2f2f3c",
       },
     },
   },

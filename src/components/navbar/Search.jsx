@@ -31,7 +31,9 @@ const Search = () => {
       <div className="flex z-50">
         <input
           onClick={() => setIsSearch(!isSearch)}
-          onChange={(e) => dispatch(setSearchText(e.target.value))}
+          onChange={(e) =>
+            dispatch(setSearchText(e.target.value))
+          }
           className={`${styles.searchInput} font-extrabold`}
           type="text"
           placeholder="Поиск фильмов . . ."
