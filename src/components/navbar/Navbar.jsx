@@ -19,7 +19,7 @@ const Navbar = ({ mode, setMode }) => {
           </Link>
         </div>
       </div>
-      {location.pathname === "/movies" && <Search />}
+      {location.pathname === "/" && <Search />}
       <div className="self-center  z-20 hidden lg:flex ">
         <div className="self-center mx-2  ">
           <DarkModeToggle
