@@ -20,6 +20,9 @@ const MoviePage = (props) => {
   const [item, setItem] = useState(
     props.location.state && props.location.state.item
   );
+
+  if(item) window.tools = {kp: item["kinopoisk_id"]};
+  
   const [error, setError] = useState(null);
 
   const query = useQuery();
